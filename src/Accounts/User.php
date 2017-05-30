@@ -36,7 +36,7 @@ class User
                 }
                 unset($user);
             }
-            $db->query('USE `ethd-torrents`');
+            $db->query('USE `ettv-torrents`');
         } else {
             $this->acl = Accounts\ACL::ANON;
         }
