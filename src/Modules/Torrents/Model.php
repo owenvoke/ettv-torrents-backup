@@ -56,6 +56,7 @@ class Model
         }
 
         foreach ($data->items as $item) {
+			$item->name = str_replace('.', ' ', $item->name);
             $stmt->bindParam(':title', $item->name, \PDO::PARAM_STR);
             $stmt->bindParam(':info_hash', $item->info_hash, \PDO::PARAM_STR);
             $stmt->bindParam(':added', $item->added, \PDO::PARAM_STR);
