@@ -226,7 +226,7 @@ class Model
         }
 
         foreach ($data->latest_torrents as $item) {
-            $item->name = str_replace('.', ' ', $item->name);
+            $item->title = str_replace('.', ' ', $item->title);
             $stmt->bindParam(':title', $item->title, \PDO::PARAM_STR);
             $stmt->bindParam(':info_hash', $item->torrent_hash, \PDO::PARAM_STR);
             $stmt->bindParam(':added', $item->date, \PDO::PARAM_STR);
@@ -235,7 +235,7 @@ class Model
             if ($stmt->execute()) {
                 if ($db->lastInsertId() != 0) {
                     $added = $added + 1;
-                    $new[] = str_replace('.', ' ', $item->name);
+                    $new[] = str_replace('.', ' ', $item->title);
                 }
             } else {
                 $failed = $failed + 1;
