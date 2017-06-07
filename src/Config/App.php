@@ -22,6 +22,6 @@ class App
         'udp://tracker.publicbt.com/announce',
         'udp://open.demonii.com/1337'
     ];
-    const CRON_USER = 'https://worldwidetorrents.eu/api/user/torrents/?id=15488';
+    const CRON_USER = 'https://torrents.katmirrors.com/api/users/ETTV';
     const TMDB_API_KEY = '9aa9ae1007cc199dff0d82dfc8758a7f';
 }
