@@ -212,8 +212,8 @@ class Model
     public static function cron()
     {
         $db = Server\Database::connect();
-        $stmt = $db->prepare('INSERT IGNORE INTO torrents (title, info_hash, added, size, category, wwt_link)
-                                                              VALUES(:title, :info_hash, :added, :size, :category, :link)');
+        $stmt = $db->prepare('INSERT IGNORE INTO torrents (title, info_hash, added, tpb_link)
+                                                              VALUES(:title, :info_hash, :added, :link)');
         header("Content-Type: text/json, text/plain");
         $json_data = file_get_contents(Config\App::CRON_USER);
 
@@ -221,18 +221,16 @@ class Model
         $added = $failed = 0;
         $new = [];
 
-        if (!isset($data->items) || !$data->items) {
+        if (!isset($data->latest_torrents) || !$data->latest_torrents) {
             die();
         }
 
-        foreach ($data->items as $item) {
+        foreach ($data->latest_torrents as $item) {
             $item->name = str_replace('.', ' ', $item->name);
-            $stmt->bindParam(':title', $item->name, \PDO::PARAM_STR);
-            $stmt->bindParam(':info_hash', $item->info_hash, \PDO::PARAM_STR);
-            $stmt->bindParam(':added', $item->added, \PDO::PARAM_STR);
-            $stmt->bindParam(':size', $item->size, \PDO::PARAM_INT);
-            $stmt->bindParam(':category', $item->cat_parent, \PDO::PARAM_STR);
-            $stmt->bindParam(':link', $item->id, \PDO::PARAM_STR);
+            $stmt->bindParam(':title', $item->title, \PDO::PARAM_STR);
+            $stmt->bindParam(':info_hash', $item->torrent_hash, \PDO::PARAM_STR);
+            $stmt->bindParam(':added', $item->date, \PDO::PARAM_STR);
+            $stmt->bindParam(':link', $item->tpb_id, \PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 if ($db->lastInsertId() != 0) {
