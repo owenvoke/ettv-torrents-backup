@@ -1,6 +1,5 @@
 <tr>
-    <td><a class="no-underline" target="_blank"
-           href="//worldwidetorrents.eu/torrents-details.php?id={$torrent->link}">{$torrent->title}</a></td>
+    <td><a class="no-underline" href="/torrent/{$torrent->id}">{$torrent->title}</a></td>
     <td class="date-column"><span class="pull-right">{$torrent->added|absolute_time}</span></td>
     <td class="category-column"><span class="pull-right">{$torrent->category}</span></td>
     <td class="hash-column">{$torrent->info_hash}</td>
