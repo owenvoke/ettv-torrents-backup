@@ -82,7 +82,7 @@
                     <h3>Other Sites</h3>
                     <ul class="list-inline">
                         <li>
-                            <a class="text-success no-underline" target="_blank"
+                            <a class="no-underline" target="_blank"
                                title="TMDb"
                                href="//www.themoviedb.org/tv/{$data->torrent->tmdb->id}">
                                 <i class="fa fa-comment" aria-hidden="true"></i> TMDb
@@ -90,7 +90,7 @@
                         </li>
                         {if $data->torrent->tmdb->homepage}
                             <li>
-                                <a class="text-warning no-underline" target="_blank"
+                                <a class="no-underline" target="_blank"
                                    title="Homepage"
                                    href="{$data->torrent->tmdb->homepage}">
                                     <i class="fa fa-link" aria-hidden="true"></i> Homepage
@@ -103,6 +103,15 @@
                                    title="Download from WorldWide Torrents"
                                    href="//worldwidetorrents.eu/torrents-details.php?id={$data->torrent->wwt_link}">
                                     <i class="fa fa-globe" aria-hidden="true"></i> WorldWide Torrents
+                                </a>
+                            </li>
+                        {/if}
+                        {if $data->torrent->tpb_link}
+                            <li>
+                                <a class="no-underline" target="_blank"
+                                   title="Download from WorldWide Torrents"
+                                   href="//thepiratebay.org/torrent/{$data->torrent->tpb_link}">
+                                    <i class="fa fa-ship" aria-hidden="true"></i> The Pirate Bay
                                 </a>
                             </li>
                         {/if}
