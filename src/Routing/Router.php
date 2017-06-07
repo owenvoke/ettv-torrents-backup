@@ -21,6 +21,7 @@ class Router
         // Main
         $route->any('/', ['pxgamer\Ettv_Torrents\Modules\Base\Controller', 'index']);
         $route->any('/search', ['pxgamer\Ettv_Torrents\Modules\Torrents\Controller', 'search']);
+        $route->any('/torrent/{id}:([0-9]+)', ['pxgamer\Ettv_Torrents\Modules\Torrents\Controller', 'show']);
 
         // Cron
         $route->any('/cron', ['pxgamer\Ettv_Torrents\Modules\Torrents\Controller', 'cron']);
